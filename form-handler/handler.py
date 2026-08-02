@@ -26,6 +26,11 @@ RATE      = int(os.environ.get('RATE_LIMIT', '5'))
 # Never set this in production; it silently discards real leads.
 DRY_RUN   = os.environ.get('MAIL_DRY_RUN', '').strip() == '1'
 
+# Cloudflare fronts api.resend.com and blocks urllib's default "Python-urllib/x.y"
+# User-Agent with error 1010 (403) before the request reaches Resend. Any explicit
+# UA gets through. Without this every send fails and nothing appears in Resend logs.
+UA = 'serpens-scan/1.0 (+https://serpens.studio)'
+
 FIELDS   = ('business', 'name', 'phone', 'trade', 'city')
 MAX_LEN  = 200
 MAX_BODY = 8 * 1024
@@ -71,7 +76,8 @@ def send(data):
     req = urllib.request.Request(
         'https://api.resend.com/emails', data=body, method='POST',
         headers={'Authorization': f'Bearer {API_KEY}',
-                 'Content-Type': 'application/json'})
+                 'Content-Type': 'application/json',
+                 'User-Agent': UA})
     with urllib.request.urlopen(req, timeout=15) as r:
         return r.status
 
@@ -139,18 +145,64 @@ class Handler(BaseHTTPRequestHandler):
         try:
             send(data)
         except urllib.error.HTTPError as e:
-            # never echo the response body: it can contain request details
-            self.log_message('resend rejected: HTTP %s', e.code)
+            # Log Resend's reason: it names the fault ("domain is not verified",
+            # "API key is invalid") and carries no secret. The client still gets a
+            # generic error.
+            try:
+                err = json.loads(e.read().decode('utf-8', 'replace'))
+                detail = f"{err.get('name','?')}: {err.get('message','?')}"[:300]
+            except Exception:
+                detail = '(unparseable body)'
+            self.log_message('resend rejected HTTP %s — %s', e.code, detail)
             return self._json(502, {'error': 'send failed'})
         except Exception as e:
-            self.log_message('resend error: %s', type(e).__name__)
+            self.log_message('resend unreachable: %s: %s', type(e).__name__, str(e)[:200])
             return self._json(502, {'error': 'send failed'})
 
         self._json(200, {'ok': True})
 
 
+def preflight():
+    """One call at boot so a bad key or unverified sender shows up in the service
+    log immediately, instead of only when a visitor submits the form."""
+    sender = MAIL_FROM.split('<')[-1].rstrip('>').strip()
+    domain = sender.rpartition('@')[2].lower()
+    try:
+        req = urllib.request.Request(
+            'https://api.resend.com/domains',
+            headers={'Authorization': f'Bearer {API_KEY}', 'User-Agent': UA})
+        with urllib.request.urlopen(req, timeout=10) as r:
+            payload = json.loads(r.read().decode())
+    except urllib.error.HTTPError as e:
+        detail = e.read().decode('utf-8', 'replace')[:200]
+        sys.stderr.write(f"PREFLIGHT FAIL: Resend returned HTTP {e.code} — {detail}\n")
+        return
+    except Exception as e:
+        sys.stderr.write(f"PREFLIGHT FAIL: cannot reach Resend: "
+                         f"{type(e).__name__}: {str(e)[:200]}\n")
+        return
+
+    items = payload.get('data') or []
+    listed = {d.get('name','').lower(): d.get('status','?') for d in items}
+    sys.stderr.write(f"preflight: key OK; domains on account: {listed or '(none)'}\n")
+    status = listed.get(domain)
+    if status is None:
+        sys.stderr.write(
+            f"PREFLIGHT FAIL: MAIL_FROM is <{sender}> but '{domain}' is not on this "
+            f"Resend account. Add and verify it, or set MAIL_FROM to a verified domain.\n")
+    elif status != 'verified':
+        sys.stderr.write(f"PREFLIGHT FAIL: domain '{domain}' status is '{status}', "
+                         f"not 'verified'. Sends will be rejected.\n")
+    else:
+        sys.stderr.write(f"preflight: sender <{sender}> on verified domain '{domain}'\n")
+
+
 if __name__ == '__main__':
-    if not API_KEY:
+    sys.stderr.write(f"scan handler on :{PORT} -> {MAIL_TO}, from {MAIL_FROM}\n")
+    if DRY_RUN:
+        sys.stderr.write("MAIL_DRY_RUN=1: submissions accepted and logged, NOT sent\n")
+    elif not API_KEY:
         sys.stderr.write("warning: RESEND_API_KEY unset, submissions will 503\n")
-    sys.stderr.write(f"scan handler on :{PORT} -> {MAIL_TO}\n")
+    else:
+        preflight()
     ThreadingHTTPServer(('0.0.0.0', PORT), Handler).serve_forever()
