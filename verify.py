@@ -93,8 +93,10 @@ for p in pages:
         placeholder_phone.add(tag)
 
 if placeholder_phone:
-    soft(f"placeholder phone number on all {len(placeholder_phone)} pages "
-         f"— set SITE_PHONE_DISPLAY / SITE_PHONE_TEL before going live")
+    # hard failure: the Dockerfile runs this, so a stale build arg shadowing
+    # build.py's real number fails the deploy instead of shipping 000-0000
+    bad(f"placeholder phone number on {len(placeholder_phone)} page(s) — a build arg "
+        f"is shadowing the default in build.py")
 
 # --- duplicate title / canonical detection ---
 for title, where in seen_titles.items():

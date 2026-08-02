@@ -10,12 +10,17 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      # Passed through empty unless set; build.py owns the defaults.
       args:
-        SITE_BASE_URL: ${SITE_BASE_URL:-https://serpens.studio}
-        SITE_PHONE_DISPLAY: ${SITE_PHONE_DISPLAY:-(602) 000-0000}
-        SITE_PHONE_TEL: ${SITE_PHONE_TEL:-+16020000000}
-        SITE_EMAIL: ${SITE_EMAIL:-hello@serpens.studio}
-        SITE_FORM_ENDPOINT: ${SITE_FORM_ENDPOINT:-#}
+        SITE_BASE_URL: ${SITE_BASE_URL:-}
+        SITE_PHONE_DISPLAY: ${SITE_PHONE_DISPLAY:-}
+        SITE_PHONE_TEL: ${SITE_PHONE_TEL:-}
+        SITE_EMAIL: ${SITE_EMAIL:-}
+        SITE_FORM_ENDPOINT: ${SITE_FORM_ENDPOINT:-}
+        SITE_GBP_URL: ${SITE_GBP_URL:-}
+        SITE_SAME_AS: ${SITE_SAME_AS:-}
+        SITE_HOURS: ${SITE_HOURS:-}
+        SITE_GEO: ${SITE_GEO:-}
     image: serpens-studio-site:latest
     restart: unless-stopped
     ports:

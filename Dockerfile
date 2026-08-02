@@ -5,19 +5,30 @@ WORKDIR /src
 
 # Deploy-time configuration. Override these as Build Args in Dokploy
 # (Application -> Build -> Build Args) — they are baked into the HTML.
-ARG SITE_BASE_URL="https://serpens.studio"
-ARG SITE_PHONE_DISPLAY="(602) 000-0000"
-ARG SITE_PHONE_TEL="+16020000000"
-ARG SITE_EMAIL="hello@serpens.studio"
-ARG SITE_FORM_ENDPOINT="#"
-ARG SITE_YEAR=""
+# Declared with NO defaults on purpose. build.py owns the defaults; an unset build
+# arg becomes an empty env var, which build.py's env() treats as unset. Giving
+# these values here would silently shadow build.py and ship stale config.
+ARG SITE_BASE_URL=
+ARG SITE_PHONE_DISPLAY=
+ARG SITE_PHONE_TEL=
+ARG SITE_EMAIL=
+ARG SITE_FORM_ENDPOINT=
+ARG SITE_YEAR=
+ARG SITE_GBP_URL=
+ARG SITE_SAME_AS=
+ARG SITE_HOURS=
+ARG SITE_GEO=
 
 ENV SITE_BASE_URL="$SITE_BASE_URL" \
     SITE_PHONE_DISPLAY="$SITE_PHONE_DISPLAY" \
     SITE_PHONE_TEL="$SITE_PHONE_TEL" \
     SITE_EMAIL="$SITE_EMAIL" \
     SITE_FORM_ENDPOINT="$SITE_FORM_ENDPOINT" \
-    SITE_YEAR="$SITE_YEAR"
+    SITE_YEAR="$SITE_YEAR" \
+    SITE_GBP_URL="$SITE_GBP_URL" \
+    SITE_SAME_AS="$SITE_SAME_AS" \
+    SITE_HOURS="$SITE_HOURS" \
+    SITE_GEO="$SITE_GEO"
 
 COPY build.py verify.py ./
 COPY site-src ./site-src
