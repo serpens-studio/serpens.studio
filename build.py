@@ -74,8 +74,8 @@ TRADES = [
    ticket="$8,000–$20,000", jobword="a whole-home window replacement",
    pain="Homeowners replacing windows collect two or three quotes and stop. Those quotes go to whoever appears in the map pack when they search — everyone else never hears the phone ring.",
    angle="Desert heat makes energy-efficient replacement a year-round search in Phoenix. The contractors winning it are rarely the best installers — they're the ones with complete profiles, steady reviews, and city pages Google can actually read.",
-   desc='Window and door contractor SEO in Phoenix. Own the map for “window replacement near me”: geo-grid tracking, review flow, call attribution. Mesa is taken.',
-   status="Mesa is taken (Econ Windows). All other territories open.", taken=True),
+   desc='Window and door contractor SEO across the Phoenix metro. Own the map for “window replacement near me”: geo-grid tracking, review flow, call attribution.',
+   status="Phoenix is taken (Econ Windows). All other territories open.", taken=True),
  dict(slug="roofing-contractor-seo-phoenix", name="Roofing", short="roofing",
    h1a="Roofers:", h1b="monsoon season is a search term.",
    searches=["roof repair phoenix","roofing companies near me","tile roof repair","roof replacement cost phoenix","emergency roof repair"],
@@ -581,6 +581,16 @@ def city_page(c):
     cards = "\n      ".join(
         f'<a class="tl" href="/{t["slug"]}/"><span>{html.escape(t["name"])}</span>'
         f'<span class="go">→</span></a>' for t in picks)
+    hoods = ", ".join(html.escape(n) for n in c["neighborhoods"][:-1]) + \
+             " and " + html.escape(c["neighborhoods"][-1])
+    faq_html = "\n      ".join(
+        f'<details><summary>{html.escape(f["q"])}<span class="x">+</span></summary>'
+        f'<p class="a">{html.escape(f["a"])}</p></details>'
+        for f in c["faqs"])
+    _byslug = {x["slug"]: x for x in CITY_PAGES}
+    nearby_html = "\n      ".join(
+        f'<a class="tl" href="/{n}/"><span>{html.escape(_byslug[n]["city"])}</span>'
+        f'<span class="go">→</span></a>' for n in c["nearby"] if n in _byslug)
     others = [t for t in TRADES if t["slug"] not in c["trades"]]
     other_links = " · ".join(
         f'<a href="/{t["slug"]}/" style="color:var(--orange);font-weight:600">{html.escape(t["name"])}</a>'
@@ -603,6 +613,7 @@ def city_page(c):
       <p class="kicker">The Market</p>
       <h2 style="margin-top:0">What {html.escape(c["city"])} actually looks like</h2>
       <p>{html.escape(c["market"])}</p>
+      <p><b>Where the work is:</b> {hoods}. Naming the areas you actually serve — on your profile and on your pages — is one of the cheapest relevance signals available, and most of your competitors have not bothered.</p>
       <h2>Why the map decides here</h2>
       <p>{html.escape(c["why"])}</p>
       <p>The work itself is the same playbook we run in every territory — a complete Google Business Profile, review requests after every job, service and city pages Google can read, citations cleaned and built, and call tracking so every booked job traces back to the search that produced it. <a href="/process/" style="color:var(--orange);font-weight:700">The full process is published here.</a></p>
@@ -633,6 +644,21 @@ def city_page(c):
     <p class="tb-note" style="margin-top:18px">Also covered here: {other_links}.</p>
   </div>
 </section>
+<section class="sec">
+  <div class="wrap">
+    <p class="kicker">{html.escape(c["city"])} Questions</p>
+    <h2 class="disp">Asked and <em>answered.</em></h2>
+    <div class="faq">{faq_html}</div>
+  </div>
+</section>
+<section class="sec alt">
+  <div class="wrap">
+    <p class="kicker">Next Door</p>
+    <h2 class="disp">Work the <em>neighbouring territories?</em></h2>
+    <p class="sub">Territories are sold separately, so holding one does not stop you quoting across the line — it just means someone else may be doing this work there.</p>
+    <div class="tradelinks">{nearby_html}</div>
+  </div>
+</section>
 <section class="sec dark-band">
   <div class="wrap">
     <h2 class="disp" style="color:#F5F2EC">See your {html.escape(c["city"])} map. <em>Free.</em></h2>
@@ -651,6 +677,9 @@ def city_page(c):
        "description":f"Google Business Profile management, geo-grid rank tracking, review generation, "
                      f"citation building and call attribution for home improvement contractors in "
                      f"{c['city']}, Arizona. One contractor per trade, per territory."},
+      {"@type":"FAQPage",
+       "mainEntity":[{"@type":"Question","name":f["q"],
+                      "acceptedAnswer":{"@type":"Answer","text":f["a"]}} for f in c["faqs"]]},
       breadcrumb_schema(items)]}
     return page(f'/{c["slug"]}/',
       f"Contractor SEO {c['city']} AZ | Serpens Studio",

@@ -1,7 +1,8 @@
 {
  "_comment": [
   "City pages for the major metro cities. Phoenix is intentionally absent: the",
-  "home page already targets it. Keep every field specific to its city."
+  "home page already targets it. Keep every field specific to its city.",
+  "neighborhoods/faqs/nearby feed the page sections and FAQPage schema."
  ],
  "cities": [
   {
@@ -20,7 +21,38 @@
    ],
    "trades_why": "Luxury remodel trades index hardest here — frameless glass, plantation shutters and motorised shade, high-end windows and doors, and cabinet-grade interior painting.",
    "note": "This territory covers Paradise Valley as well. One contractor per trade holds both.",
-   "needs_data": "Add the three profiles currently holding the Scottsdale map for your trade, and a geo-grid screenshot centred on Old Town."
+   "needs_data": "Add the three profiles currently holding the Scottsdale map for your trade, and a geo-grid screenshot centred on Old Town.",
+   "neighborhoods": [
+    "Old Town",
+    "McCormick Ranch",
+    "Gainey Ranch",
+    "Grayhawk",
+    "DC Ranch",
+    "Troon North",
+    "South Scottsdale"
+   ],
+   "nearby": [
+    "contractor-seo-tempe-az",
+    "contractor-seo-mesa-az"
+   ],
+   "faqs": [
+    {
+     "q": "Do I need a Scottsdale address to rank in Scottsdale?",
+     "a": "No, but proximity is still the strongest single factor in the map pack. A shop in Tempe or north Phoenix can rank across much of Scottsdale; ranking in Troon North from a south Tempe address is a much harder ask. The geo-grid shows exactly where your radius currently ends, which is the point of running the free scan before anyone promises you anything."
+    },
+    {
+     "q": "Why is my competitor outranking me when I have more reviews?",
+     "a": "Review count is one input among many, and it is rarely the deciding one in Scottsdale. Category completeness, proximity to the searcher, review recency and how much of your profile is actually filled in all carry weight. A competitor with forty recent reviews and nine service categories will usually beat a hundred reviews from 2021 and two categories."
+    },
+    {
+     "q": "Is high-end work harder to rank for here?",
+     "a": "The searches are not harder, the competition is better funded. Everyone chasing a Paradise Valley remodel budget is already advertising. That is why we lean on the things money cannot shortcut: review velocity after every job, real photography of local work, and pages that name the neighbourhoods you actually serve."
+    },
+    {
+     "q": "Which trades are still open in Scottsdale?",
+     "a": "All eight at the time of writing. Scottsdale and Paradise Valley are sold as one territory, so taking it covers both cities for your trade."
+    }
+   ]
   },
   {
    "slug": "contractor-seo-mesa-az",
@@ -29,7 +61,7 @@
    "hook": "the most houses that need work.",
    "sub": "Mesa has more homes that need work than any other city in the metro — and a map pack that most East Valley contractors have never seriously contested.",
    "market": "Mesa is the third-largest city in Arizona and, for a home improvement contractor, the most straightforwardly profitable demographic in the metro: a very large stock of houses built between the 1960s and the 1990s, a substantial retiree and winter-visitor population with equity and no mortgage, and a culture of getting three quotes before committing. Original roofs, original windows, and original HVAC are all reaching end of life across whole subdivisions at once.",
-   "why": "The searches here skew toward repair and replacement rather than aspiration — \"roof repair near me\", \"ac not cooling\", \"window replacement cost\". That intent is immediate and local, which makes the map pack decisive: the homeowner is not researching, they are picking someone to come out this week. Mesa is also where we can point at our own work, because it is the territory our first client holds.",
+   "why": "The searches here skew toward repair and replacement rather than aspiration — \"roof repair near me\", \"ac not cooling\", \"window replacement cost\". That intent is immediate and local, which makes the map pack decisive: the homeowner is not researching, they are picking someone to come out this week. Mesa is wide open: we hold no client here in any trade, which is unusual for a city this size and this far into its replacement cycle.",
    "trades": [
     "roofing-contractor-seo-phoenix",
     "hvac-contractor-seo-phoenix",
@@ -37,8 +69,38 @@
     "flooring-contractor-seo-phoenix"
    ],
    "trades_why": "Replacement-cycle trades dominate — roofing, HVAC, garage doors, and flooring, in roughly that order of urgency.",
-   "note": "Windows and doors in this territory is taken — Econ Windows has held it since 2026. Every other trade is open.",
-   "needs_data": "The Econ Windows engagement is the natural proof asset for this page; add the before/after geo-grid once the data matures."
+   "note": "Every trade is open in this territory, including windows and doors.",
+   "needs_data": "Mesa is the largest genuinely uncontested territory on the list. A geo-grid scan of one trade here would make the argument concretely.",
+   "neighborhoods": [
+    "Dobson Ranch",
+    "Las Sendas",
+    "Superstition Springs",
+    "Eastmark",
+    "Red Mountain",
+    "Downtown Mesa"
+   ],
+   "nearby": [
+    "contractor-seo-tempe-az",
+    "contractor-seo-chandler-az"
+   ],
+   "faqs": [
+    {
+     "q": "Is Mesa less competitive than Scottsdale or Chandler?",
+     "a": "On the map, yes, and by a wider margin than the size of the city would suggest. Mesa has more homes needing work than anywhere else in the metro and noticeably less complete profile work behind them. That gap is the reason we flag it as the largest genuinely uncontested territory on our list."
+    },
+    {
+     "q": "Most of my work comes from referrals. Why bother with the map?",
+     "a": "Referrals do not scale with your capacity, and they dry up first when the market slows. Map visibility is the channel that keeps producing when the phone stops ringing on its own. It also captures the homeowner who was referred to you but searched your name plus 'reviews' before calling."
+    },
+    {
+     "q": "My customers are retirees. Do they even use Google Maps?",
+     "a": "They use it more than most people assume, usually on a phone handed to them by an adult child helping with the decision. Mesa's winter-visitor and retiree population is also unusually review-driven: they read them carefully and they leave them when asked, which makes review velocity work harder here than almost anywhere in the Valley."
+    },
+    {
+     "q": "How far does the Mesa territory reach?",
+     "a": "Mesa and the East Valley are sold as one territory, which includes Tempe. One contractor per trade holds the whole thing."
+    }
+   ]
   },
   {
    "slug": "contractor-seo-chandler-az",
@@ -56,7 +118,36 @@
    ],
    "trades_why": "Upgrade-cycle trades lead — flooring replacement, first-time re-roofs on 1990s builds, shutters and shade, and garage door replacement.",
    "note": "This territory is Chandler and Gilbert together. One contractor per trade covers both cities.",
-   "needs_data": "Worth pulling the average review count of the current top three here — the comparison-shopping angle is much stronger with a real number attached."
+   "needs_data": "Worth pulling the average review count of the current top three here — the comparison-shopping angle is much stronger with a real number attached.",
+   "neighborhoods": [
+    "Ocotillo",
+    "Fulton Ranch",
+    "Sun Groves",
+    "Downtown Chandler",
+    "the Airpark area"
+   ],
+   "nearby": [
+    "contractor-seo-gilbert-az",
+    "contractor-seo-tempe-az"
+   ],
+   "faqs": [
+    {
+     "q": "Why do Chandler homeowners take longer to book?",
+     "a": "Because they compare more. The household profile here skews technical and dual-income, and the buying pattern shows it: all three map results opened, one-star reviews read first, owner responses checked. That lengthens the decision but it also rewards you, because a complete profile wins a comparison that a thin one never even enters."
+    },
+    {
+     "q": "Do owner responses to reviews actually matter?",
+     "a": "In Chandler more than most places. A measured reply to a bad review is read as evidence of how you handle problems, which is exactly what a comparison shopper is trying to work out. We draft responses within a day, including the unflattering ones."
+    },
+    {
+     "q": "Is Chandler sold separately from Gilbert?",
+     "a": "No. Chandler and Gilbert are one territory, so one contractor per trade covers both cities. It is the densest pair of master-planned suburbs in the metro and splitting them would put two of our own clients in the same map."
+    },
+    {
+     "q": "What if my Google profile was set up years ago and never touched?",
+     "a": "That is the normal starting point, and it is usually the cheapest win available. Most of the first month is category completion, service areas, hours, attributes and photographs, all of which move the map before a single new page is written."
+    }
+   ]
   },
   {
    "slug": "contractor-seo-gilbert-az",
@@ -74,7 +165,37 @@
    ],
    "trades_why": "First-cycle replacement leads — roofs at the 20-to-25-year mark, exterior repaints, flooring, and original builder-grade windows.",
    "note": "This territory is Chandler and Gilbert together. One contractor per trade covers both cities.",
-   "needs_data": "A geo-grid centred on a specific Gilbert subdivision would demonstrate the street-by-street effect better than any paragraph."
+   "needs_data": "A geo-grid centred on a specific Gilbert subdivision would demonstrate the street-by-street effect better than any paragraph.",
+   "neighborhoods": [
+    "Agritopia",
+    "Morrison Ranch",
+    "Val Vista Lakes",
+    "Seville",
+    "Power Ranch",
+    "Higley"
+   ],
+   "nearby": [
+    "contractor-seo-chandler-az",
+    "contractor-seo-mesa-az"
+   ],
+   "faqs": [
+    {
+     "q": "Why does work here come in waves?",
+     "a": "Gilbert was built as large master-planned subdivisions over a compressed period, so whole streets reach the same replacement point within a season or two of each other. When one house re-roofs or repaints, the neighbours see it and follow. Map visibility gets you the first job on the street; the street gets you the rest."
+    },
+    {
+     "q": "My homes are newer. Is there really work here?",
+     "a": "The mid-1990s and early-2000s builds are now twenty to thirty years old, which is exactly when roofs, builder-grade windows and original flooring come due together. The searches skew toward replacement and upgrade rather than emergency repair, but the volume is real and growing every year."
+    },
+    {
+     "q": "Should I target Gilbert or Chandler?",
+     "a": "You do not have to choose. They are sold as a single territory, so one contractor per trade covers both."
+    },
+    {
+     "q": "How quickly could I see movement in Gilbert?",
+     "a": "The honest answer is that grid points on the edge of your radius usually move first, in the first couple of months, and the centre consolidates later. Anyone promising a specific position by a specific date is guessing."
+    }
+   ]
   },
   {
    "slug": "contractor-seo-glendale-az",
@@ -92,7 +213,34 @@
    ],
    "trades_why": "Heat-driven and age-driven trades lead — HVAC first, then roofing, exterior paint, and garage doors.",
    "note": "This territory covers Peoria as well. One contractor per trade holds both.",
-   "needs_data": "Run a comparison scan of the same trade in Glendale and Scottsdale — the completeness gap is the argument, and it is measurable."
+   "needs_data": "Run a comparison scan of the same trade in Glendale and Scottsdale — the completeness gap is the argument, and it is measurable.",
+   "neighborhoods": [
+    "Arrowhead Ranch",
+    "Westgate",
+    "Historic Downtown Glendale",
+    "the Sahuaro Ranch area"
+   ],
+   "nearby": [
+    "contractor-seo-peoria-az"
+   ],
+   "faqs": [
+    {
+     "q": "Is the West Valley really less competitive?",
+     "a": "Consistently, yes. Marketing spend in this metro concentrates east toward Scottsdale, Chandler and Gilbert, and West Valley profiles are noticeably less complete and less maintained as a result. The same work that barely registers in Scottsdale can take the top three here."
+    },
+    {
+     "q": "Does that advantage last?",
+     "a": "It lasts as long as it takes competitors to notice, which historically has been years rather than months in this part of the Valley. Holding a position is also cheaper than winning it, so getting in early compounds."
+    },
+    {
+     "q": "I work across the whole West Valley, not just Glendale. Does that matter?",
+     "a": "It helps, and it is worth saying so on your site and in your profile's service areas. Glendale and Peoria are sold as one territory precisely because contractors here rarely work one city."
+    },
+    {
+     "q": "What about the stadium and entertainment district traffic?",
+     "a": "It has little bearing on home improvement search. What matters in Glendale is housing age, and most of the city sits squarely in the window where roofs, HVAC and windows need replacing rather than repairing."
+    }
+   ]
   },
   {
    "slug": "contractor-seo-peoria-az",
@@ -110,7 +258,35 @@
    ],
    "trades_why": "Comfort trades lead — HVAC, shade and shutters, walk-in and low-threshold shower conversions, and roofing.",
    "note": "This territory covers Glendale as well. One contractor per trade holds both.",
-   "needs_data": "Age-in-place conversions (walk-in showers, low-threshold enclosures) are a real and under-served search cluster here — worth a dedicated service page for whoever takes this territory."
+   "needs_data": "Age-in-place conversions (walk-in showers, low-threshold enclosures) are a real and under-served search cluster here — worth a dedicated service page for whoever takes this territory.",
+   "neighborhoods": [
+    "Vistancia",
+    "Fletcher Heights",
+    "Westbrook Village",
+    "Old Town Peoria",
+    "the Sun City fringe"
+   ],
+   "nearby": [
+    "contractor-seo-glendale-az"
+   ],
+   "faqs": [
+    {
+     "q": "Why does Peoria behave like two different markets?",
+     "a": "Because it is nearly thirty miles long. The southern end is established and sits against the Sun City retirement communities; north Peoria is newer growth with larger homes and younger families. They search differently, they convert differently, and a profile tuned for one is not tuned for the other."
+    },
+    {
+     "q": "Are age-in-place conversions worth targeting?",
+     "a": "They are one of the most under-served search clusters in this territory. Walk-in showers, low-threshold enclosures and grab-bar installation get searched steadily around the Sun City fringe and almost nobody has a dedicated page for them."
+    },
+    {
+     "q": "My customers call rather than fill in forms. Does that break tracking?",
+     "a": "No, it is the reason call tracking exists. A tracking number on the profile and the site records and attributes every call, which matters more here than almost anywhere given how phone-first the southern end of the city is."
+    },
+    {
+     "q": "Is Peoria sold separately from Glendale?",
+     "a": "No, they are one territory. One contractor per trade holds both."
+    }
+   ]
   },
   {
    "slug": "contractor-seo-tempe-az",
@@ -128,7 +304,36 @@
    ],
    "trades_why": "Turnover trades lead — flooring, interior repaint, garage doors, and HVAC repair on ageing units.",
    "note": "Tempe sits in the Mesa & East Valley territory. One contractor per trade covers the whole East Valley.",
-   "needs_data": "Property-manager and multi-property enquiries are a distinct search intent worth its own page for whoever holds this territory."
+   "needs_data": "Property-manager and multi-property enquiries are a distinct search intent worth its own page for whoever holds this territory.",
+   "neighborhoods": [
+    "Maple-Ashland",
+    "Warner Ranch",
+    "The Lakes",
+    "Escalante",
+    "the Mill Avenue area"
+   ],
+   "nearby": [
+    "contractor-seo-mesa-az",
+    "contractor-seo-chandler-az"
+   ],
+   "faqs": [
+    {
+     "q": "Are landlords worth chasing as customers?",
+     "a": "One property manager with a dozen doors is worth more than a dozen one-off homeowners, and they find their first contractor the same way everyone else does. What they want is different: a date you can commit to, not craftsmanship photographs."
+    },
+    {
+     "q": "Why does Tempe have so little new construction work?",
+     "a": "The city is landlocked and fully built out, so almost everything is renovation. That makes the housing stock older on average than the East Valley around it and pushes demand toward replacement, turnover and repair."
+    },
+    {
+     "q": "Does the student rental market actually matter to my trade?",
+     "a": "It sets the calendar. A large share of single-family stock is investor-owned and turns over on an academic timetable, which concentrates flooring, paint and door work into predictable windows. Being visible and available in those windows is most of the opportunity."
+    },
+    {
+     "q": "Which territory covers Tempe?",
+     "a": "Mesa and the East Valley. One contractor per trade covers the whole East Valley including Tempe."
+    }
+   ]
   }
  ]
 }
