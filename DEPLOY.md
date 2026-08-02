@@ -125,6 +125,37 @@ Search Console or its API. `robots.txt` also advertises the sitemap.
 `dist/` is gitignored and rebuilt in the image, so a push is enough. HTML is
 `no-cache`; assets are content-hashed, so a redeploy is picked up immediately.
 
+## Free-scan form (Resend)
+
+The site is static, so `RESEND_API_KEY` cannot live in it — anything passed as a
+build arg is baked into public HTML. The key belongs to `form-handler/`, a small
+service nginx proxies at `/api/scan`.
+
+Deploy `docker-compose.yml` as a Dokploy **Compose** service to get it:
+
+```
+web   nginx + the built site, domain attached here, port 80
+form  the endpoint; not published to the host, reachable only through nginx
+```
+
+Set these in Dokploy's **Environment** tab (runtime env, NOT build args):
+
+| var | notes |
+|---|---|
+| `RESEND_API_KEY` | required; the compose file refuses to start without it |
+| `MAIL_TO` | default `hello@serpens.studio` |
+| `MAIL_FROM` | default `Serpens Studio <scan@serpens.studio>`; the domain must be verified in Resend |
+| `RATE_LIMIT` | posts per IP per hour, default 5 |
+
+`SITE_FORM_ENDPOINT` defaults to `/api/scan` in the compose file, so the POST is
+same-origin: no CORS, no second domain, and the key is never reachable from a
+browser. The handler validates and truncates every field, strips control
+characters (so a name can't inject mail headers), drops honeypot submissions
+while returning 200, and rate-limits per IP.
+
+Deploying the **Dockerfile alone** still works — `/api/scan` simply 404s and
+`main.js` falls back to composing a mailto. Nothing breaks.
+
 ## What the server config does
 
 - **Clean URLs.** `/pricing/` → `/pricing/index.html`. `/pricing` gets a **301** to

@@ -1,9 +1,10 @@
-# Local preview + optional Dokploy "Docker Compose" deploy.
+# Two services: nginx serving the built site, and the form endpoint behind it
+# at /api/scan. Deploy this whole file in Dokploy (Compose type) if you want the
+# free-scan form to submit server-side; deploying the Dockerfile alone also works
+# and simply leaves the form on its mailto fallback.
 #
-# Local:   docker compose up --build   ->  http://localhost:8080
-# Dokploy: prefer the "Application / Dockerfile" type (see DEPLOY.md). If you do
-#          deploy this compose file instead, drop the `ports:` block and attach the
-#          domain in the Dokploy UI so Traefik routes to the container on port 80.
+# Local:  docker compose up --build   ->  http://localhost:8080
+# Dokploy: drop the `ports:` block and attach the domain to `web` on port 80.
 
 services:
   web:
@@ -16,17 +17,43 @@ services:
         SITE_PHONE_DISPLAY: ${SITE_PHONE_DISPLAY:-}
         SITE_PHONE_TEL: ${SITE_PHONE_TEL:-}
         SITE_EMAIL: ${SITE_EMAIL:-}
-        SITE_FORM_ENDPOINT: ${SITE_FORM_ENDPOINT:-}
         SITE_GBP_URL: ${SITE_GBP_URL:-}
         SITE_SAME_AS: ${SITE_SAME_AS:-}
         SITE_HOURS: ${SITE_HOURS:-}
         SITE_GEO: ${SITE_GEO:-}
+        # same-origin, proxied to the form service by nginx
+        SITE_FORM_ENDPOINT: ${SITE_FORM_ENDPOINT:-/api/scan}
     image: serpens-studio-site:latest
     restart: unless-stopped
+    depends_on:
+      - form
     ports:
       - "${LOCAL_PORT:-8080}:80"
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://127.0.0.1/healthz"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  form:
+    build:
+      context: ./form-handler
+      dockerfile: Dockerfile
+    image: serpens-studio-form:latest
+    restart: unless-stopped
+    # RUNTIME env, not a build arg: the key must never be baked into an image
+    # layer or the static output. Set RESEND_API_KEY in Dokploy's Environment tab.
+    environment:
+      RESEND_API_KEY: ${RESEND_API_KEY:?set RESEND_API_KEY}
+      MAIL_TO: ${MAIL_TO:-hello@serpens.studio}
+      MAIL_FROM: ${MAIL_FROM:-Serpens Studio <scan@serpens.studio>}
+      RATE_LIMIT: ${RATE_LIMIT:-5}
+    # deliberately not published to the host: reachable only via nginx
+    expose:
+      - "8080"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080/healthz"]
       interval: 30s
       timeout: 3s
       retries: 3
