@@ -1,0 +1,82 @@
+{
+ "@type": "OfferCatalog",
+ "name": "Local SEO plans",
+ "itemListElement": [
+  {
+   "@type": "Offer",
+   "name": "Local Presence",
+   "price": "450",
+   "priceCurrency": "USD",
+   "priceSpecification": {
+    "@type": "UnitPriceSpecification",
+    "price": "450",
+    "priceCurrency": "USD",
+    "billingIncrement": 1,
+    "unitText": "month"
+   },
+   "itemOffered": {
+    "@type": "Service",
+    "name": "Local Presence plan",
+    "description": "Google Business Profile posts twice monthly, Q&A monitoring, photo uploads, review requests and drafted responses, citation monitoring, monthly report."
+   }
+  },
+  {
+   "@type": "Offer",
+   "name": "Local Growth",
+   "price": "950",
+   "priceCurrency": "USD",
+   "priceSpecification": {
+    "@type": "UnitPriceSpecification",
+    "price": "950",
+    "priceCurrency": "USD",
+    "billingIncrement": 1,
+    "unitText": "month"
+   },
+   "itemOffered": {
+    "@type": "Service",
+    "name": "Local Growth plan",
+    "description": "Everything in Local Presence plus geo-grid rank tracking, call tracking with source attribution, one new service or city page monthly, ongoing citation building, competitor visibility tracking."
+   }
+  },
+  {
+   "@type": "Offer",
+   "name": "Market Leader",
+   "price": "1850",
+   "priceCurrency": "USD",
+   "priceSpecification": {
+    "@type": "UnitPriceSpecification",
+    "price": "1850",
+    "priceCurrency": "USD",
+    "billingIncrement": 1,
+    "unitText": "month"
+   },
+   "itemOffered": {
+    "@type": "Service",
+    "name": "Market Leader plan",
+    "description": "Everything in Local Growth plus dedicated city pages, AI search visibility tracking, conversion work, quarterly strategy call."
+   }
+  },
+  {
+   "@type": "Offer",
+   "name": "Setup",
+   "price": "1000",
+   "priceCurrency": "USD",
+   "itemOffered": {
+    "@type": "Service",
+    "name": "One-time setup",
+    "description": "Profile audit and optimization, citation cleanup, twenty new citations, on-page audit, call tracking installation, baseline scan, review system configuration."
+   }
+  },
+  {
+   "@type": "Offer",
+   "name": "Website Build",
+   "price": "5500",
+   "priceCurrency": "USD",
+   "itemOffered": {
+    "@type": "Service",
+    "name": "Contractor website build or full redesign",
+    "description": "New build or full redesign delivered in six weeks: service pages, city pages for the full service area, structured data on every page, mobile speed, lead capture, and call tracking wired from day one. $4,000 for clients on any monthly plan. Client owns the site outright."
+   }
+  }
+ ]
+}

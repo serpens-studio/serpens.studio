@@ -1,0 +1,86 @@
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://serpens.studio/#page",
+   "url": "https://serpens.studio/",
+   "name": "Local SEO for Phoenix Contractors — Windows, Roofing, Garage Doors & More | Serpens Studio",
+   "isPartOf": {
+    "@id": "https://serpens.studio/#org"
+   },
+   "about": {
+    "@id": "https://serpens.studio/#org"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "How long before I see results?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Profile changes can move rankings within weeks. Meaningful movement across a service area usually takes three to six months. Anyone promising faster is guessing."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do I have to sign a contract?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Month to month, thirty days notice, cancel any time."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Who owns everything if I leave?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "You do. Profile, citations, phone numbers, and any pages we built. We hand it over and remove our access."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do you work with my competitors?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. One contractor per trade, per service area. When your slot is filled, it is filled until that client leaves."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What if my website is bad — or I don't have one?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "We build it. $5,500 standalone, $4,000 if you are on any monthly plan, six weeks either way. Service pages, city pages, schema, lead capture, and call tracking are part of the build, not add-ons — and you own it outright."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What if my Google profile gets suspended?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "We handle reinstatement for $1,200, and you pay only if it is restored."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why only these trades?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Because they all win jobs the same way: a homeowner searches the map, calls the top three, and books a quote. One playbook, executed properly, beats twenty playbooks executed adequately. If your trade is not on the list, ask — if the marketing path matches, it qualifies."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What does one contractor per trade, per territory mean?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "We take one roofer in Scottsdale, one window company in Mesa, one garage door company in Chandler — never two of the same trade in the same market. Your monthly fee never funds your competitor."
+     }
+    }
+   ]
+  }
+ ]
+}

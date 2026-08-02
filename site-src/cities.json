@@ -1,0 +1,134 @@
+{
+ "_comment": [
+  "City pages for the major metro cities. Phoenix is intentionally absent: the",
+  "home page already targets it. Keep every field specific to its city."
+ ],
+ "cities": [
+  {
+   "slug": "contractor-seo-scottsdale-az",
+   "city": "Scottsdale",
+   "territory": "Scottsdale & Paradise Valley",
+   "hook": "the highest ticket in the Valley.",
+   "sub": "Scottsdale home improvement searches convert into the largest jobs in the metro — and into the most crowded set of Google Business Profiles anywhere in Arizona.",
+   "market": "Scottsdale is really two markets wearing one name. South of Camelback the housing stock is mid-century ranch — original aluminium windows, flat and low-slope roofs, kitchens and baths that have been remodelled once since 1975. North of the 101 it is 1990s-and-later custom and semi-custom homes on big lots, where the work is upgrade rather than repair, and where a single job can be worth more than a month of work anywhere else in the Valley.",
+   "why": "Both halves search the same way — on a phone, from the house, using the map. What changes is the stakes. A frameless enclosure quote in Paradise Valley and one in west Mesa involve the same three-minute search and wildly different invoices, which is why every well-funded contractor in the metro already advertises here. The map pack in Scottsdale is not won on effort; it is won on profile completeness, review recency, and having pages that actually name the neighbourhoods you work in.",
+   "trades": [
+    "glass-shower-door-seo-phoenix",
+    "shutters-shade-contractor-seo-phoenix",
+    "window-door-contractor-seo-phoenix",
+    "painting-contractor-seo-phoenix"
+   ],
+   "trades_why": "Luxury remodel trades index hardest here — frameless glass, plantation shutters and motorised shade, high-end windows and doors, and cabinet-grade interior painting.",
+   "note": "This territory covers Paradise Valley as well. One contractor per trade holds both.",
+   "needs_data": "Add the three profiles currently holding the Scottsdale map for your trade, and a geo-grid screenshot centred on Old Town."
+  },
+  {
+   "slug": "contractor-seo-mesa-az",
+   "city": "Mesa",
+   "territory": "Mesa & East Valley",
+   "hook": "the most houses that need work.",
+   "sub": "Mesa has more homes that need work than any other city in the metro — and a map pack that most East Valley contractors have never seriously contested.",
+   "market": "Mesa is the third-largest city in Arizona and, for a home improvement contractor, the most straightforwardly profitable demographic in the metro: a very large stock of houses built between the 1960s and the 1990s, a substantial retiree and winter-visitor population with equity and no mortgage, and a culture of getting three quotes before committing. Original roofs, original windows, and original HVAC are all reaching end of life across whole subdivisions at once.",
+   "why": "The searches here skew toward repair and replacement rather than aspiration — \"roof repair near me\", \"ac not cooling\", \"window replacement cost\". That intent is immediate and local, which makes the map pack decisive: the homeowner is not researching, they are picking someone to come out this week. Mesa is also where we can point at our own work, because it is the territory our first client holds.",
+   "trades": [
+    "roofing-contractor-seo-phoenix",
+    "hvac-contractor-seo-phoenix",
+    "garage-door-company-seo-phoenix",
+    "flooring-contractor-seo-phoenix"
+   ],
+   "trades_why": "Replacement-cycle trades dominate — roofing, HVAC, garage doors, and flooring, in roughly that order of urgency.",
+   "note": "Windows and doors in this territory is taken — Econ Windows has held it since 2026. Every other trade is open.",
+   "needs_data": "The Econ Windows engagement is the natural proof asset for this page; add the before/after geo-grid once the data matures."
+  },
+  {
+   "slug": "contractor-seo-chandler-az",
+   "city": "Chandler",
+   "territory": "Chandler & Gilbert",
+   "hook": "buyers here do their homework.",
+   "sub": "Chandler homeowners research harder, compare more, and read reviews more carefully than anywhere else in the Valley. That rewards a complete profile and punishes a thin one.",
+   "market": "Chandler grew up around the semiconductor industry — Intel's largest Arizona campuses sit here — and the household profile shows it: dual-income, technical, comfortable, and inclined to do homework before spending money. The housing is largely master-planned and built from the late 1980s onward, with the big southern developments now old enough that their original roofs, water heaters and flooring are all coming due at once.",
+   "why": "The buying behaviour is what matters for search. A Chandler homeowner is more likely to open all three map results, read the one-star reviews first, check whether you replied to them, and look at your photos before calling anyone. That means review volume alone does not win here — review recency, owner responses, and real job photography do. It also means a half-finished profile gets eliminated in the comparison rather than simply ranked lower.",
+   "trades": [
+    "flooring-contractor-seo-phoenix",
+    "roofing-contractor-seo-phoenix",
+    "shutters-shade-contractor-seo-phoenix",
+    "garage-door-company-seo-phoenix"
+   ],
+   "trades_why": "Upgrade-cycle trades lead — flooring replacement, first-time re-roofs on 1990s builds, shutters and shade, and garage door replacement.",
+   "note": "This territory is Chandler and Gilbert together. One contractor per trade covers both cities.",
+   "needs_data": "Worth pulling the average review count of the current top three here — the comparison-shopping angle is much stronger with a real number attached."
+  },
+  {
+   "slug": "contractor-seo-gilbert-az",
+   "city": "Gilbert",
+   "territory": "Chandler & Gilbert",
+   "hook": "the newest homes are coming due.",
+   "sub": "Gilbert spent two decades as one of the fastest-growing municipalities in the country. Those homes are now hitting their first replacement cycle, all at once.",
+   "market": "Gilbert is still officially a town, which is a useful reminder of how recently it was farmland. It went from a few thousand residents to a quarter of a million in a generation, almost entirely as master-planned subdivisions built from the mid-1990s through the 2010s. The consequence for contractors is unusual and specific: an enormous number of near-identical houses of near-identical age, arriving at their first major replacement cycle simultaneously.",
+   "why": "That creates a wave pattern that rewards visibility more than it rewards capacity. When one street re-roofs or repaints, neighbours follow within the season — and the contractor they find is the one on the map when they search, or the one parked in the neighbour's driveway. Winning the map here is compounding: map visibility produces the first job in a subdivision, and the first job produces the rest of the street. Gilbert is also young and heavily family-skewed, so the interior trades — flooring, paint, shade — move on kids and pets rather than on failure.",
+   "trades": [
+    "roofing-contractor-seo-phoenix",
+    "painting-contractor-seo-phoenix",
+    "flooring-contractor-seo-phoenix",
+    "window-door-contractor-seo-phoenix"
+   ],
+   "trades_why": "First-cycle replacement leads — roofs at the 20-to-25-year mark, exterior repaints, flooring, and original builder-grade windows.",
+   "note": "This territory is Chandler and Gilbert together. One contractor per trade covers both cities.",
+   "needs_data": "A geo-grid centred on a specific Gilbert subdivision would demonstrate the street-by-street effect better than any paragraph."
+  },
+  {
+   "slug": "contractor-seo-glendale-az",
+   "city": "Glendale",
+   "territory": "Glendale & Peoria",
+   "hook": "the least contested map in the metro.",
+   "sub": "Glendale has the demand of an established city and the map competition of a much smaller one. That gap is the whole opportunity.",
+   "market": "Glendale carries a mix most Valley cities do not: a genuinely old core with mid-century and earlier housing, large stretches of 1970s and 1980s subdivisions, and newer development pushing north and west around the sports and entertainment district. Housing age across most of the city sits squarely in the window where roofs, HVAC systems and windows all need replacing rather than repairing.",
+   "why": "What makes Glendale worth a territory is not the demand — it is the competition. Marketing spend in this metro concentrates east: Scottsdale, Chandler, Gilbert. West Valley profiles are consistently less complete, less reviewed and less maintained than their East Valley equivalents, which means the same work that barely moves the needle in Scottsdale can take the top three here. It is the cheapest map in the Valley to win and one of the more durable to hold.",
+   "trades": [
+    "hvac-contractor-seo-phoenix",
+    "roofing-contractor-seo-phoenix",
+    "painting-contractor-seo-phoenix",
+    "garage-door-company-seo-phoenix"
+   ],
+   "trades_why": "Heat-driven and age-driven trades lead — HVAC first, then roofing, exterior paint, and garage doors.",
+   "note": "This territory covers Peoria as well. One contractor per trade holds both.",
+   "needs_data": "Run a comparison scan of the same trade in Glendale and Scottsdale — the completeness gap is the argument, and it is measurable."
+  },
+  {
+   "slug": "contractor-seo-peoria-az",
+   "city": "Peoria",
+   "territory": "Glendale & Peoria",
+   "hook": "two markets, one city limit.",
+   "sub": "Peoria runs nearly thirty miles north to south, and the contractor opportunity at one end has almost nothing in common with the other.",
+   "market": "Peoria is unusually long and narrow, and it behaves like two cities. The southern end is established, adjacent to the Sun City retirement communities, and full of owners who are older, equity-rich, decisive, and highly responsive to reviews and to being treated well on the phone. North Peoria is newer growth — larger homes, younger families, and a build cycle recent enough that the work is upgrade and shade rather than replacement.",
+   "why": "The two ends search differently and convert differently. Southern Peoria and its Sun City neighbours will call rather than fill in a form, will ask about licensing, and will tell their entire community about the experience afterwards — which makes review velocity and call handling the ranking levers that matter. North Peoria behaves like Gilbert: newer stock, subdivision waves, and searches that skew toward comfort and appearance.",
+   "trades": [
+    "hvac-contractor-seo-phoenix",
+    "shutters-shade-contractor-seo-phoenix",
+    "glass-shower-door-seo-phoenix",
+    "roofing-contractor-seo-phoenix"
+   ],
+   "trades_why": "Comfort trades lead — HVAC, shade and shutters, walk-in and low-threshold shower conversions, and roofing.",
+   "note": "This territory covers Glendale as well. One contractor per trade holds both.",
+   "needs_data": "Age-in-place conversions (walk-in showers, low-threshold enclosures) are a real and under-served search cluster here — worth a dedicated service page for whoever takes this territory."
+  },
+  {
+   "slug": "contractor-seo-tempe-az",
+   "city": "Tempe",
+   "territory": "Mesa & East Valley",
+   "hook": "renovation, on a rental clock.",
+   "sub": "Tempe cannot grow outward, so almost everything here is renovation — and a large share of the buyers are landlords, not homeowners.",
+   "market": "Tempe is fully built out and hemmed in on every side, which makes it the most renovation-dominated city in the metro: no new subdivisions, an ageing mid-century core, and a housing market shaped by Arizona State University. A substantial share of the single-family stock is investor-owned and rented, much of it to students, and turned over on an academic calendar rather than a homeowner's timeline.",
+   "why": "That changes who is searching and what wins. A landlord between tenants is not comparing craftsmanship — they need flooring, paint or a working garage door done inside a two-week window, and they will book whoever is visible and can commit to a date. Response speed and clearly stated availability outrank polish. It also means repeat business is concentrated: one property manager with a dozen doors is worth more than a dozen one-off homeowners, and they find their first contractor on the map like everyone else.",
+   "trades": [
+    "flooring-contractor-seo-phoenix",
+    "painting-contractor-seo-phoenix",
+    "garage-door-company-seo-phoenix",
+    "hvac-contractor-seo-phoenix"
+   ],
+   "trades_why": "Turnover trades lead — flooring, interior repaint, garage doors, and HVAC repair on ageing units.",
+   "note": "Tempe sits in the Mesa & East Valley territory. One contractor per trade covers the whole East Valley.",
+   "needs_data": "Property-manager and multi-property enquiries are a distinct search intent worth its own page for whoever holds this territory."
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+# the site is generated inside the image — never ship a stale local build
+dist/
+
+.git/
+.gitignore
+.env
+.env.*
+!.env.example
+
+*.md
+DEPLOY.md
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+.DS_Store
+Thumbs.db
+*.swp

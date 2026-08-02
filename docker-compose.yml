@@ -1,0 +1,28 @@
+# Local preview + optional Dokploy "Docker Compose" deploy.
+#
+# Local:   docker compose up --build   ->  http://localhost:8080
+# Dokploy: prefer the "Application / Dockerfile" type (see DEPLOY.md). If you do
+#          deploy this compose file instead, drop the `ports:` block and attach the
+#          domain in the Dokploy UI so Traefik routes to the container on port 80.
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SITE_BASE_URL: ${SITE_BASE_URL:-https://serpens.studio}
+        SITE_PHONE_DISPLAY: ${SITE_PHONE_DISPLAY:-(602) 000-0000}
+        SITE_PHONE_TEL: ${SITE_PHONE_TEL:-+16020000000}
+        SITE_EMAIL: ${SITE_EMAIL:-hello@serpens.studio}
+        SITE_FORM_ENDPOINT: ${SITE_FORM_ENDPOINT:-#}
+    image: serpens-studio-site:latest
+    restart: unless-stopped
+    ports:
+      - "${LOCAL_PORT:-8080}:80"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/healthz"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
