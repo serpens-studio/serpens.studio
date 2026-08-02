@@ -1,0 +1,9 @@
+# Local preview only. Publishes a host port, which docker-compose.yml deliberately
+# does not, so a Dokploy deploy can never collide with something on the host.
+#
+#   docker compose -f docker-compose.yml -f docker-compose.local.yml up --build
+
+services:
+  web:
+    ports:
+      - "${LOCAL_PORT:-8080}:80"

@@ -189,7 +189,7 @@ def preflight():
                          f"{type(e).__name__}: {str(e)[:200]}\n")
         return
 
-    items = payload.get('data') or []
+    items = (payload or {}).get('data') or [] if isinstance(payload, dict) else []
     listed = {d.get('name','').lower(): d.get('status','?') for d in items}
     sys.stderr.write(f"preflight: key OK; domains on account: {listed or '(none)'}\n")
     status = listed.get(domain)

@@ -3,8 +3,9 @@
 # free-scan form to submit server-side; deploying the Dockerfile alone also works
 # and simply leaves the form on its mailto fallback.
 #
-# Local:  docker compose up --build   ->  http://localhost:8080
-# Dokploy: drop the `ports:` block and attach the domain to `web` on port 80.
+# Dokploy: deploy as-is and attach the domain to `web` on container port 80.
+#          No host ports are published, so nothing can collide on the host.
+# Local:   docker compose -f docker-compose.yml -f docker-compose.local.yml up --build
 
 services:
   web:
@@ -27,8 +28,8 @@ services:
     restart: unless-stopped
     depends_on:
       - form
-    ports:
-      - "${LOCAL_PORT:-8080}:80"
+    expose:
+      - "80"
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://127.0.0.1/healthz"]
       interval: 30s
@@ -44,8 +45,10 @@ services:
     restart: unless-stopped
     # RUNTIME env, not a build arg: the key must never be baked into an image
     # layer or the static output. Set RESEND_API_KEY in Dokploy's Environment tab.
+    # If it is missing the service still starts and says so in its log; the form
+    # falls back to mailto rather than taking the whole stack down.
     environment:
-      RESEND_API_KEY: ${RESEND_API_KEY:?set RESEND_API_KEY}
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
       MAIL_TO: ${MAIL_TO:-hello@serpens.studio}
       MAIL_FROM: ${MAIL_FROM:-Serpens Studio <scan@serpens.studio>}
       RATE_LIMIT: ${RATE_LIMIT:-5}
