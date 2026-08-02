@@ -22,8 +22,10 @@ YEAR          = env('SITE_YEAR', str(datetime.date.today().year))
 # GBP permalink. Use ?cid=; /maps/place/ URLs carry session params.
 GBP_URL = env('SITE_GBP_URL', "https://maps.google.com/?cid=16126195117637674079")
 
-# schema sameAs, comma-separated. GBP first.
-SAME_AS = [u.strip() for u in env('SITE_SAME_AS', GBP_URL).split(',') if u.strip()]
+# schema sameAs, comma-separated. GBP first, then profiles.
+SAME_AS = [u.strip() for u in env(
+    'SITE_SAME_AS',
+    f"{GBP_URL},https://github.com/serpens-studio").split(',') if u.strip()]
 
 # SITE_HOURS="Mo,Tu,We,Th,Fr 08:00-17:00". Omitted unless set; must match GBP.
 def _hours(spec):
