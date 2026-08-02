@@ -153,6 +153,21 @@ browser. The handler validates and truncates every field, strips control
 characters (so a name can't inject mail headers), drops honeypot submissions
 while returning 200, and rate-limits per IP.
 
+### Testing the form locally
+
+```bash
+PORT=8099 MAIL_DRY_RUN=1 python3 form-handler/handler.py   # accepts, logs, sends nothing
+SITE_FORM_ENDPOINT=/api/scan python3 build.py
+python3 serve.py                                          # proxies /api/scan
+```
+
+`serve.py` forwards `/api/scan` to `FORM_UPSTREAM` (default `http://127.0.0.1:8099/scan`)
+the way nginx forwards it to `form:8080`. Drop `MAIL_DRY_RUN` and export a real
+`RESEND_API_KEY` to send an actual test message.
+
+`MAIL_DRY_RUN=1` must never be set in production: it returns 200 and discards the
+submission, so leads disappear silently.
+
 Deploying the **Dockerfile alone** still works — `/api/scan` simply 404s and
 `main.js` falls back to composing a mailto. Nothing breaks.
 

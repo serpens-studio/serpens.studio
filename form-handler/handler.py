@@ -22,6 +22,9 @@ MAIL_TO   = os.environ.get('MAIL_TO', 'hello@serpens.studio').strip()
 MAIL_FROM = os.environ.get('MAIL_FROM', 'Serpens Studio <scan@serpens.studio>').strip()
 PORT      = int(os.environ.get('PORT', '8080'))
 RATE      = int(os.environ.get('RATE_LIMIT', '5'))
+# Local testing only: accept and log submissions without calling Resend.
+# Never set this in production; it silently discards real leads.
+DRY_RUN   = os.environ.get('MAIL_DRY_RUN', '').strip() == '1'
 
 FIELDS   = ('business', 'name', 'phone', 'trade', 'city')
 MAX_LEN  = 200
@@ -124,6 +127,10 @@ class Handler(BaseHTTPRequestHandler):
         data = {f: clean(payload.get(f, '')) for f in FIELDS}
         if not data['business'] or not data['phone']:
             return self._json(400, {'error': 'business and phone required'})
+
+        if DRY_RUN:
+            self.log_message('DRY RUN, not sending: %s', json.dumps(data))
+            return self._json(200, {'ok': True, 'dryRun': True})
 
         if not API_KEY:
             self.log_message('RESEND_API_KEY unset; dropping submission')

@@ -6,11 +6,13 @@
 Reproduces clean URLs, redirects, status codes and headers so a local check
 matches production. Preview only; the Docker image is the real thing.
 """
-import os, re, sys, functools
+import os, re, sys, functools, urllib.request, urllib.error
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dist')
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 8080
+# where form-handler/handler.py is listening; nginx uses http://form:8080/scan
+FORM_UPSTREAM = os.environ.get('FORM_UPSTREAM', 'http://127.0.0.1:8099/scan')
 
 # matches the nginx canonical-slash location
 DIRPATH = re.compile(r'^(/[^.]*[^/])$')
@@ -65,6 +67,31 @@ class Handler(SimpleHTTPRequestHandler):
             self._send(404, b'404', 'text/plain')
 
     def do_HEAD(self): self.do_GET()
+
+    def do_POST(self):
+        """Proxy /api/scan to the form handler, as nginx does in production.
+        Start it with:  PORT=8099 MAIL_DRY_RUN=1 python3 form-handler/handler.py"""
+        if self.path.split('?')[0] != '/api/scan':
+            return self._not_found()
+        try:
+            length = int(self.headers.get('Content-Length') or 0)
+        except ValueError:
+            return self._send(400, b'{"error":"bad length"}', 'application/json')
+        body = self.rfile.read(length) if length else b''
+        req = urllib.request.Request(
+            FORM_UPSTREAM, data=body, method='POST',
+            headers={'Content-Type': 'application/json',
+                     'X-Real-IP': self.client_address[0]})
+        try:
+            with urllib.request.urlopen(req, timeout=20) as r:
+                out, code = r.read(), r.status
+        except urllib.error.HTTPError as e:
+            out, code = e.read(), e.code
+        except Exception as e:
+            sys.stderr.write(f"  form upstream unreachable ({type(e).__name__}); "
+                             f"start it on {FORM_UPSTREAM}\n")
+            out, code = b'{"error":"upstream unreachable"}', 502
+        self._send(code, out, 'application/json')
 
     def do_GET(self):
         path = self.path.split('?', 1)[0].split('#', 1)[0]
