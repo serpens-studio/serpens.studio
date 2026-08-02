@@ -43,6 +43,7 @@ static, so values are baked in at build time; runtime env vars do nothing.
 | `SITE_YEAR` | build year | footer copyright |
 | `SITE_SAME_AS` | GBP permalink | comma-separated profile URLs for schema `sameAs` |
 | `SITE_GBP_URL` | GBP permalink | Google Business Profile link (`sameAs`, `hasMap`, contact page) |
+| `SITE_GTM_ID` | `GTM-NNG894NK` | Google Tag Manager container; `""` builds with no analytics |
 | `SITE_GEO` | *(unset)* | `"lat,lng"`; omitted for a service-area business |
 | `SITE_HOURS` | *(unset)* | e.g. `Mo,Tu,We,Th,Fr 08:00-17:00`; must match GBP exactly |
 
@@ -124,6 +125,21 @@ Search Console or its API. `robots.txt` also advertises the sitemap.
 
 `dist/` is gitignored and rebuilt in the image, so a push is enough. HTML is
 `no-cache`; assets are content-hashed, so a redeploy is picked up immediately.
+
+## Analytics
+
+GTM `GTM-NNG894NK` (GA4 `G-3L2CTBW3D4`) is on every page: loader first in `<head>`,
+`noscript` iframe after `<body>`. Build with `SITE_GTM_ID=""` to omit it entirely.
+
+`main.js` pushes a `scan_submit` dataLayer event on a successful form submission,
+with `method` (`endpoint` vs `mailto`), `trade` and `area`. Use `scan_submit` +
+`method = endpoint` as the conversion trigger — a `mailto` fallback is not a lead.
+
+**The CSP allows only Google's tag hosts.** Any tag added later in the GTM UI
+(Google Ads, Meta pixel, Clarity, chat widgets) loads from a different host and
+will be silently blocked until that host is added to `script-src`/`img-src`/
+`connect-src` in `nginx/site.conf`. If a new tag reports no data, check the
+browser console for a CSP violation before assuming the tag is misconfigured.
 
 ## Free-scan form (Resend)
 

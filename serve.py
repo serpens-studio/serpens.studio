@@ -19,11 +19,17 @@ DIRPATH = re.compile(r'^(/[^.]*[^/])$')
 ASSET_1D  = re.compile(r'\.(css|js)$', re.I)
 ASSET_30D = re.compile(r'\.(png|jpe?g|gif|webp|avif|svg|ico|woff2?)$', re.I)
 
-CSP = ("default-src 'self'; script-src 'self' 'unsafe-inline'; "
+CSP = ("default-src 'self'; "
+       "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com; "
        "style-src 'self' 'unsafe-inline'; "
-       "font-src 'self'; img-src 'self' data:; "
-       "connect-src 'self' https:; form-action 'self' https:; "
-       "frame-ancestors 'self'; base-uri 'self'; object-src 'none'")
+       "font-src 'self'; "
+       "img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://*.g.doubleclick.net; "
+       "connect-src 'self' https:; "
+       "form-action 'self' https:; "
+       "frame-src https://www.googletagmanager.com; "
+       "frame-ancestors 'self'; "
+       "base-uri 'self'; "
+       "object-src 'none'")
 
 
 class Handler(SimpleHTTPRequestHandler):

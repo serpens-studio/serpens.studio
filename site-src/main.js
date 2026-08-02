@@ -75,18 +75,25 @@
     if(!form.checkValidity()){form.reportValidity();return;}
     var endpoint=form.getAttribute('action');
     var data={business:form.business.value.trim(),name:form.name.value.trim(),phone:form.phone.value.trim(),trade:form.trade.value,city:form.city.value};
-    function done(){document.getElementById('formOk').style.display='block';form.querySelector('button[type=submit]').disabled=true;}
+    function done(sent){
+      document.getElementById('formOk').style.display='block';
+      form.querySelector('button[type=submit]').disabled=true;
+      /* GTM conversion trigger. 'method' separates a real server-side
+         submission from the mailto fallback, which is not a lead. */
+      window.dataLayer=window.dataLayer||[];
+      window.dataLayer.push({event:'scan_submit',method:sent?'endpoint':'mailto',trade:data.trade,area:data.city});
+    }
     function fallback(){
       var body='Free scan request%0D%0A%0D%0ABusiness: '+encodeURIComponent(data.business)+
         '%0D%0AName: '+encodeURIComponent(data.name)+
         '%0D%0APhone: '+encodeURIComponent(data.phone)+
         '%0D%0ATrade: '+encodeURIComponent(data.trade)+'%0D%0AArea: '+encodeURIComponent(data.city);
+      done(false);
       location.href='mailto:{{EMAIL}}?subject='+encodeURIComponent('Free scan request — '+data.business)+'&body='+body;
-      done();
     }
     if(endpoint&&endpoint!=='#'){
       fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
-        .then(function(r){if(r.ok)done();else fallback();}).catch(fallback);
+        .then(function(r){if(r.ok)done(true);else fallback();}).catch(fallback);
     }else{fallback();}
   });
 })();

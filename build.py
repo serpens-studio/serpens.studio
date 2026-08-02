@@ -45,6 +45,21 @@ def _hours(spec):
 
 HOURS = _hours(env('SITE_HOURS', ''))
 
+# Google Tag Manager. Set SITE_GTM_ID="" to build without analytics.
+GTM_ID = env('SITE_GTM_ID', "GTM-NNG894NK")
+if GTM_ID and not re.fullmatch(r'GTM-[A-Z0-9]{4,}', GTM_ID):
+    raise SystemExit(f'build.py: SITE_GTM_ID must look like "GTM-XXXXXXX", got {GTM_ID!r}')
+
+# Standard GTM loader. Placed as high in <head> as possible; the noscript iframe
+# goes immediately after <body>. Both are omitted entirely when GTM_ID is empty,
+# so a build with analytics off ships no third-party script at all.
+GTM_HEAD = (f"""<script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':new Date().getTime(),event:'gtm.js'}});"""
+            f"""var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;"""
+            f"""j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);}})"""
+            f"""(window,document,'script','dataLayer','{GTM_ID}');</script>\n""") if GTM_ID else ""
+GTM_BODY = (f"""<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={GTM_ID}" """
+            f"""height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>\n""") if GTM_ID else ""
+
 CITIES = ["Phoenix","Scottsdale","Mesa","Chandler","Gilbert","Glendale","Tempe","Peoria",
           "Paradise Valley","Cave Creek","Queen Creek","Surprise","Goodyear","Avondale",
           "Buckeye","Fountain Hills","Anthem","Sun City","Litchfield Park","Apache Junction"]
@@ -276,6 +291,7 @@ def page(path, title, desc, body, active="", schema=None, extra_head=""):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{GTM_HEAD}
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(desc)}">
 <link rel="canonical" href="{canonical}">
@@ -298,7 +314,7 @@ def page(path, title, desc, body, active="", schema=None, extra_head=""):
 <link rel="stylesheet" href="{CSS_HREF}">{extra_head}{schema_tag}
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+{GTM_BODY}<a class="skip" href="#main">Skip to content</a>
 {nav(active)}
 <main id="main">
 {body}
