@@ -180,7 +180,7 @@ CSS += """
 .two-col>div{flex:1 1 380px}
 .prose p{color:var(--steel);margin-bottom:16px;max-width:62ch}
 .prose p b{color:var(--ink)}
-.prose h2{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(26px,3.4vw,36px);margin:28px 0 12px}
+.prose h2,.prose h3{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(26px,3.4vw,36px);margin:28px 0 12px}
 .ticket-box{background:var(--white);border:1px solid var(--line-l);border-left:4px solid var(--orange);padding:22px 24px;margin:22px 0}
 .ticket-box b{font-family:var(--disp);font-weight:900;font-size:clamp(28px,3.4vw,38px);display:block;line-height:1.05}
 .ticket-box span{font-family:var(--disp);font-weight:600;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
@@ -335,8 +335,10 @@ def page(path, title, desc, body, active="", schema=None, extra_head=""):
 
 def crumbs(items):
     parts = []
-    for label, href in items:
-        parts.append(f'<a href="{href}">{html.escape(label)}</a>' if href else html.escape(label))
+    for i, (label, href) in enumerate(items):
+        last = i == len(items) - 1
+        parts.append(html.escape(label) if (last or not href)
+                     else f'<a href="{href}">{html.escape(label)}</a>')
     return '<p class="crumbs">' + ' &nbsp;/&nbsp; '.join(parts) + '</p>'
 
 def breadcrumb_schema(items):
@@ -716,19 +718,19 @@ pricing_body = f'''
   <p class="sub">Three plans is enough to be honest and few enough to decide in a minute. The difference is not access to a better person — it is how much runs each month.</p>
   <div class="two-col">
     <div class="prose">
-      <h2 style="margin-top:0">Take $450 if</h2>
+      <h3 style="margin-top:0">Take $450 if</h3>
       <p>Your profile exists, has some reviews, and the phone rings — just not as often as it should. You are protecting and tidying a position you already half-hold. Most single-truck operations start here and never need to move.</p>
-      <h2>Take $950 if</h2>
+      <h3>Take $950 if</h3>
       <p>You have crews to keep busy and a competitor visibly ahead of you on the map. This is the plan with geo-grid tracking and call attribution, which means it is the first plan where you can prove what happened. It is the one most contractors should be on.</p>
-      <h2>Take $1,850 if</h2>
+      <h3>Take $1,850 if</h3>
       <p>You are contesting a genuinely competitive territory — HVAC in the East Valley, roofing after a storm season — or you are running more than one location. Below that level of competition you would be buying hours you do not need.</p>
     </div>
     <div class="prose">
-      <h2 style="margin-top:0">The setup fee, honestly</h2>
+      <h3 style="margin-top:0">The setup fee, honestly</h3>
       <p>The $1,000 is a real month of work: auditing and rebuilding the profile, cleaning up the citation trail, fixing whatever the last agency left behind, and standing up call tracking. It is charged once, before the monthly work starts, because that first month is the month with the most work in it.</p>
-      <h2>What changes the price</h2>
+      <h3>What changes the price</h3>
       <p><b>Nothing.</b> Not your revenue, not how badly you need it, not how the discovery call goes. The number on this page is the number on the agreement. If we ever charge for something that is not printed here, you are entitled to ask why — and the answer had better be a signed change to scope.</p>
-      <h2>What the price does not include</h2>
+      <h3>What the price does not include</h3>
       <p>Google Ads budget, which we do not manage. Photography, which you are better placed to take on the job. And any promise about rankings — <a href="/process/" style="color:var(--orange);font-weight:700">we guarantee deliverables, not positions</a>.</p>
     </div>
   </div>
@@ -804,22 +806,22 @@ proc_body = f'''
   <p class="sub">Local SEO does not move in a straight line, and anyone who draws you a smooth upward curve is selling you one. Here is the shape it genuinely takes, so you can tell early whether it is working.</p>
   <div class="two-col">
     <div class="prose">
-      <h2 style="margin-top:0">Weeks 1–2 — the boring part</h2>
+      <h3 style="margin-top:0">Weeks 1–2 — the boring part</h3>
       <p>Profile rebuilt, categories filled, citations audited and corrected, tracking number installed, baseline geo-grid captured. Nothing visible happens to your rankings. This is also where most of the setup fee goes, and where the errors that have been quietly capping you get found.</p>
-      <h2>Months 1–2 — movement at the edges</h2>
+      <h3>Months 1–2 — movement at the edges</h3>
       <p>The first thing that moves is almost never the centre pin. It is the grid points two or three miles out, where the competition is thinner. Your ranking from your own front door may not change at all yet. Reviews start arriving on a rhythm instead of by accident.</p>
     </div>
     <div class="prose">
-      <h2 style="margin-top:0">Months 3–4 — the phone changes first</h2>
+      <h3 style="margin-top:0">Months 3–4 — the phone changes first</h3>
       <p>Call volume usually shifts before the map does, and the recordings tell you what kind of call it is. This is the point where attribution earns its place: you can see that the new calls are coming from search rather than from repeat customers or referrals.</p>
-      <h2>Months 5–6 — the centre moves</h2>
+      <h3>Months 5–6 — the centre moves</h3>
       <p>Top-three coverage across the grid starts consolidating toward the middle. This is the first month the geo-grid comparison looks dramatic — and, not coincidentally, the first month it would be easy for us to take credit for something seasonal. The report separates the two.</p>
     </div>
   </div>
 </div></section>
 <section class="sec"><div class="wrap">
   <p class="kicker">Boundaries</p>
-  <h2 class="disp">What we <em>will not</em> do.</h2>
+  <h2 class="disp">The tactics <em>we refuse.</em></h2>
   <p class="sub">A published process is only useful if it also says what is out of bounds. These are refusals, not upsells — none of them become available at a higher plan.</p>
   <div class="two-col">
     <div class="prose">
@@ -834,9 +836,29 @@ proc_body = f'''
     </div>
   </div>
 </div></section>
+<section class="sec alt"><div class="wrap">
+  <p class="kicker">Your Side</p>
+  <h2 class="disp">What we need <em>from you.</em></h2>
+  <p class="sub">Short list, and most of it is once. If a contractor tells you local SEO needs nothing from them, they are not doing local SEO.</p>
+  <div class="two-col">
+    <div class="prose">
+      <h3 style="margin-top:0">In the first week</h3>
+      <p><b>Manager access to your Google Business Profile.</b> Not ownership — you stay the owner, and you can remove us in two clicks whenever you like.</p>
+      <p><b>Login to your website and domain</b>, or the name of whoever holds them. Half the delays we see are a former web designer who stopped answering emails.</p>
+      <p><b>Your service list and real service area</b>, in your words. What you actually sell, and how far you will genuinely drive.</p>
+    </div>
+    <div class="prose">
+      <h3 style="margin-top:0">Every month, about an hour</h3>
+      <p><b>Photos from finished jobs.</b> Phone photos are fine. This is the single highest-value thing you can send us and the one we most often have to chase.</p>
+      <p><b>Ask for the review.</b> We send the request and draft the responses, but the ask lands better from the person who did the work.</p>
+      <p><b>Ten minutes on the report.</b> If something in it does not match what you saw on the ground, say so — the map is evidence, not proof.</p>
+    </div>
+  </div>
+</div></section>
 <section class="sec dark-band"><div class="wrap">
   <h2 class="disp" style="color:#F5F2EC">Every month, <em>in writing.</em></h2>
   <p class="sub">The first week of each month you get one page: calls from Google (recorded and attributed), your geo-grid versus last month, and the list of work completed. If a month ever goes by where you can't tell what you paid for, that's on us — and you're month to month, so you can act on it.</p>
+  <p class="sub">How much of the above runs each month is the only thing that separates the three plans. <a href="/pricing/" style="color:var(--orange-hot);font-weight:700">Every price is published →</a></p>
   <a class="btn" href="/free-scan/">Start With a Free Scan <span class="ar">→</span></a>
 </div></section>'''
 PAGES.append((page("/process/","Our Process — Contractor Local SEO | Serpens Studio",
