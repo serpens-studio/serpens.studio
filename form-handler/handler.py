@@ -31,7 +31,8 @@ DRY_RUN   = os.environ.get('MAIL_DRY_RUN', '').strip() == '1'
 # UA gets through. Without this every send fails and nothing appears in Resend logs.
 UA = 'serpens-scan/1.0 (+https://serpens.studio)'
 
-FIELDS   = ('business', 'name', 'phone', 'trade', 'city')
+FIELDS   = ('business', 'name', 'email', 'phone', 'trade', 'city')
+EMAIL_RE = re.compile(r'^[^@\s]+@[^@\s.]+\.[^@\s]+$')
 MAX_LEN  = 200
 MAX_BODY = 8 * 1024
 
@@ -62,13 +63,15 @@ def send(data):
     body = json.dumps({
         'from': MAIL_FROM,
         'to': [MAIL_TO],
-        'reply_to': MAIL_TO,
+        # reply straight to the contractor rather than to ourselves
+        'reply_to': data['email'] or MAIL_TO,
         'subject': f"Free scan request — {data['business'] or 'unnamed'}",
         'text': "\n".join([
             "New free scan request.", "",
             f"Business : {data['business']}",
             f"Name     : {data['name']}",
-            f"Phone    : {data['phone']}",
+            f"Email    : {data['email']}",
+            f"Phone    : {data['phone'] or '(not given)'}",
             f"Trade    : {data['trade']}",
             f"Area     : {data['city']}",
         ]),
@@ -131,8 +134,12 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(200, {'ok': True})        # look successful, discard
 
         data = {f: clean(payload.get(f, '')) for f in FIELDS}
-        if not data['business'] or not data['phone']:
-            return self._json(400, {'error': 'business and phone required'})
+        # email is the delivery mechanism for the scan, so it is the required one;
+        # phone is optional by design.
+        if not data['business'] or not data['email']:
+            return self._json(400, {'error': 'business and email required'})
+        if not EMAIL_RE.match(data['email']):
+            return self._json(400, {'error': 'invalid email'})
 
         if DRY_RUN:
             self.log_message('DRY RUN, not sending: %s', json.dumps(data))

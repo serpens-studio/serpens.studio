@@ -74,7 +74,7 @@
     if(form.website&&form.website.value)return;
     if(!form.checkValidity()){form.reportValidity();return;}
     var endpoint=form.getAttribute('action');
-    var data={business:form.business.value.trim(),name:form.name.value.trim(),phone:form.phone.value.trim(),trade:form.trade.value,city:form.city.value};
+    var data={business:form.business.value.trim(),name:form.name.value.trim(),email:form.email.value.trim(),phone:form.phone.value.trim(),trade:form.trade.value,city:form.city.value};
     function done(sent){
       document.getElementById('formOk').style.display='block';
       form.querySelector('button[type=submit]').disabled=true;
@@ -86,6 +86,7 @@
     function fallback(){
       var body='Free scan request%0D%0A%0D%0ABusiness: '+encodeURIComponent(data.business)+
         '%0D%0AName: '+encodeURIComponent(data.name)+
+        '%0D%0AEmail: '+encodeURIComponent(data.email)+
         '%0D%0APhone: '+encodeURIComponent(data.phone)+
         '%0D%0ATrade: '+encodeURIComponent(data.trade)+'%0D%0AArea: '+encodeURIComponent(data.city);
       done(false);

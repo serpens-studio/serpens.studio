@@ -131,6 +131,10 @@ Search Console or its API. `robots.txt` also advertises the sitemap.
 GTM `GTM-NNG894NK` (GA4 `G-3L2CTBW3D4`) is on every page: loader first in `<head>`,
 `noscript` iframe after `<body>`. Build with `SITE_GTM_ID=""` to omit it entirely.
 
+The form collects **email as the required field** (it is how the scan is
+delivered) and phone as optional. The handler sets the lead's email as `reply_to`,
+so replying to the notification replies to the contractor.
+
 `main.js` pushes a `scan_submit` dataLayer event on a successful form submission,
 with `method` (`endpoint` vs `mailto`), `trade` and `area`. Use `scan_submit` +
 `method = endpoint` as the conversion trigger — a `mailto` fallback is not a lead.

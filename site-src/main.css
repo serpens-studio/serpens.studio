@@ -325,6 +325,8 @@ footer{background:var(--ink);color:rgba(245,242,236,.6);font-size:14px}
 .tb-note{margin-top:16px;font-size:14px;color:var(--steel);max-width:80ch}
 @media(max-width:640px){.tb-row{grid-template-columns:1fr auto}.tb-terr{display:none}.tb-st{white-space:normal;font-size:11.5px;max-width:110px}}
 
+.field .opt{font-family:var(--body);font-weight:500;font-size:12px;letter-spacing:0;text-transform:none;color:var(--dim);margin-left:6px}
+
 /* reveal: gated on html.js so content stays visible without JS */
 html.js .rev{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}
 html.js .rev.in{opacity:1;transform:none}

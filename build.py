@@ -429,7 +429,11 @@ for t in TRADES:
     home_body = home_body.replace(f'<span class="tb-trade" role="cell">{t["name"].replace("&","&amp;")}</span>',
         f'<a class="tb-trade" role="cell" href="/{t["slug"]}/" style="color:inherit">{t["name"].replace("&","&amp;")}</a>')
 # repoint anchors to real pages
-home_body = home_body.replace('href="#scan"','href="/free-scan/"').replace('href="#pricing"','href="/pricing/"')
+# In-page anchors, not links to /free-scan/. The home page embeds the same form
+# at #scan-embed and the full pricing table at #pricing, so sending a visitor to
+# another page put a page load between intent and action. Sub-pages still get
+# real links (they extract from v3 and rewrite separately).
+home_body = home_body.replace('href="#scan"','href="#scan-embed"')
 home_body = home_body.replace('id="scan"','id="scan-embed"')
 
 # --- home-only sections ---
