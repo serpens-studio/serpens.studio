@@ -16,7 +16,10 @@ BASE          = env('SITE_BASE_URL', "https://serpens.studio").rstrip('/')
 PHONE_DISPLAY = env('SITE_PHONE_DISPLAY', "(602) 905-7835")
 PHONE_TEL     = env('SITE_PHONE_TEL', "+16029057835")
 EMAIL         = env('SITE_EMAIL', "hello@serpens.studio")
-FORM_ENDPOINT = env('SITE_FORM_ENDPOINT', "#")                # POST target for the free-scan form; "#" = mailto fallback
+# Free-scan form POST target. Same-origin: nginx proxies /api/scan to the form
+# service. If that service isn't deployed the path 404s and main.js falls back to
+# composing a mailto, so this default is safe for a static-only deploy too.
+FORM_ENDPOINT = env('SITE_FORM_ENDPOINT', "/api/scan")
 YEAR          = env('SITE_YEAR', str(datetime.date.today().year))
 
 # GBP permalink. Use ?cid=; /maps/place/ URLs carry session params.
